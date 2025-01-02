@@ -22,7 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @AllArgsConstructor
 public class SpringSecurityConfig {
 
-//    private UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Bean
     public static PasswordEncoder passwordEncoder(){
@@ -46,26 +46,26 @@ public class SpringSecurityConfig {
         return http.build();
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
-//        return configuration.getAuthenticationManager();
-//    }
-
     @Bean
-    public UserDetailsService userDetailsService(){
-
-        UserDetails pallavi = User.builder()
-                .username("pallavi")
-                .password(passwordEncoder().encode("password"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(pallavi, admin);
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
+
+//    @Bean
+//    public UserDetailsService userDetailsService(){
+//
+//        UserDetails pallavi = User.builder()
+//                .username("pallavi")
+//                .password(passwordEncoder().encode("password"))
+//                .roles("USER")
+//                .build();
+//
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode("admin"))
+//                .roles("ADMIN")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(pallavi, admin);
+//    }
 }
